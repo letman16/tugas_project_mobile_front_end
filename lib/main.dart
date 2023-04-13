@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_kelompok/blank_screen.dart';
 
+import 'package:tugas_kelompok/minggu02/minggu02.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -49,7 +51,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BlankScreen();
+              return const Minggu02();
             }));
           },
           style: ElevatedButton.styleFrom(
