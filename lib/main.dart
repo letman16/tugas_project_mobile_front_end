@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tugas_kelompok/blank_screen.dart';
 
 import 'package:tugas_kelompok/minggu02/minggu02.dart';
+import 'package:tugas_kelompok/minggu03/minggu03.dart';
 import 'package:tugas_kelompok/minggu06/minggu06.dart';
 import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 
@@ -15,7 +16,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const String _title = 'Tugas Kelompok 8';
+  static const String _title = 'Tugas Kelompok 8 sebelum UTS';
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BlankScreen();
+              return const Minggu03();
             }));
           },
           style: ElevatedButton.styleFrom(
