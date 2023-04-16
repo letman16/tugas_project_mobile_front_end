@@ -1,0 +1,285 @@
+import 'dart:js_util';
+
+import 'package:flutter/material.dart';
+
+class Minggu05Provider extends ChangeNotifier {
+  final List<Map<String, dynamic>> _data = [
+    {
+      "nama": "Nasi Goreng",
+      "jenis": "Makanan",
+      "harga": 25000,
+      "rating": 8,
+      "pembeli": 100
+    },
+    {
+      "nama": "Ayam Geprek",
+      "jenis": "Makanan",
+      "harga": 20000,
+      "rating": 9,
+      "pembeli": 80
+    },
+    {
+      "nama": "Sate Ayam",
+      "jenis": "Makanan",
+      "harga": 30000,
+      "rating": 3,
+      "pembeli": 70
+    },
+    {
+      "nama": "Bakso",
+      "jenis": "Makanan",
+      "harga": 15000,
+      "rating": 6,
+      "pembeli": 120
+    },
+    {
+      "nama": "Mie Ayam",
+      "jenis": "Makanan",
+      "harga": 20000,
+      "rating": 8,
+      "pembeli": 90
+    },
+    {
+      "nama": "Soto Ayam",
+      "jenis": "Makanan",
+      "harga": 25000,
+      "rating": 4,
+      "pembeli": 60
+    },
+    {
+      "nama": "Nasi Uduk",
+      "jenis": "Makanan",
+      "harga": 20000,
+      "rating": 8,
+      "pembeli": 50
+    },
+    {
+      "nama": "Bubur Ayam",
+      "jenis": "Makanan",
+      "harga": 15000,
+      "rating": 6,
+      "pembeli": 80
+    },
+    {
+      "nama": "Es Teh Manis",
+      "jenis": "Minuman",
+      "harga": 5000,
+      "rating": 7,
+      "pembeli": 150
+    },
+    {
+      "nama": "Jus Alpukat",
+      "jenis": "Minuman",
+      "harga": 10000,
+      "rating": 9,
+      "pembeli": 70
+    },
+    {
+      "nama": "Kopi Hitam",
+      "jenis": "Minuman",
+      "harga": 8000,
+      "rating": 2,
+      "pembeli": 100
+    },
+    {
+      "nama": "Teh Tarik",
+      "jenis": "Minuman",
+      "harga": 6000,
+      "rating": 7,
+      "pembeli": 120
+    },
+    {
+      "nama": "Jus Jeruk",
+      "jenis": "Minuman",
+      "harga": 8000,
+      "rating": 8,
+      "pembeli": 90
+    },
+    {
+      "nama": "Coca Cola",
+      "jenis": "Minuman",
+      "harga": 10000,
+      "rating": 6,
+      "pembeli": 50
+    },
+    {
+      "nama": "Milo",
+      "jenis": "Minuman",
+      "harga": 9000,
+      "rating": 7,
+      "pembeli": 80
+    },
+    {
+      "nama": "Nasi Campur",
+      "jenis": "Makanan",
+      "harga": 30000,
+      "rating": 5,
+      "pembeli": 70
+    },
+    {
+      "nama": "Gado-Gado",
+      "jenis": "Makanan",
+      "harga": 20000,
+      "rating": 7,
+      "pembeli": 60
+    },
+    {
+      "nama": "Sate Kambing",
+      "jenis": "Makanan",
+      "harga": 35000,
+      "rating": 9,
+      "pembeli": 50
+    },
+    {
+      "nama": "Nasi Bakar",
+      "jenis": "Makanan",
+      "harga": 20000,
+      "rating": 3,
+      "pembeli": 30
+    },
+    {
+      "nama": "Tuak",
+      "jenis": "Minuman",
+      "harga": 10000,
+      "rating": 10,
+      "pembeli": 60
+    },
+  ];
+
+  List<Map<String, dynamic>> _data_filter_done = [];
+
+  final List<String> _AvailableOption = ["Makanan", "Minuman"];
+  final List<int> _filter_harga = [20000, 70000, 1000000];
+  final List<int> _filter_pembeli = [50, 100, 1000000];
+  final List<int> _filter_rating = [3, 6, 1000000];
+
+  String _CurrentOption = "";
+  int _Current_harga = 20000;
+  int _Current_pembeli = 100;
+  int _Current_rating = 1000000;
+
+  bool _show_type = true;
+  bool _show_filter = false;
+
+  bool _show_filter_harga = false;
+  bool _show_filter_rating = false;
+  bool _show_filter_pembeli = false;
+
+  //get
+
+  List<Map<String, dynamic>> get data => _data;
+
+  List<Map<String, dynamic>> get data_filter_done => _data_filter_done;
+
+  List<String> get AvailableOption => _AvailableOption;
+  List<int> get filter_harga => _filter_harga;
+  List<int> get filter_pembeli => _filter_pembeli;
+  List<int> get filter_rating => _filter_rating;
+
+  String get CurrentOption => _CurrentOption;
+  int get Current_harga => _Current_harga;
+  int get Current_pembeli => _Current_pembeli;
+  int get Current_rating => _Current_rating;
+
+  bool get show_type => _show_type;
+  bool get show_filter => _show_filter;
+
+  bool get show_filter_harga => _show_filter_harga;
+  bool get show_filter_rating => _show_filter_rating;
+  bool get show_filter_pembeli => _show_filter_pembeli;
+
+  //set
+
+  set setdata_filter_done(val) {
+    notifyListeners();
+  }
+
+  set setCurrentOption(val) {
+    _CurrentOption = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setCurrent_harga(val) {
+    _Current_harga = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setCurrent_pembeli(val) {
+    _Current_pembeli = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setCurrent_rating(val) {
+    _Current_rating = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setshow_type(val) {
+    _show_type = val;
+    notifyListeners();
+  }
+
+  set setshow_filter(val) {
+    _show_filter = val;
+    notifyListeners();
+  }
+
+  set setshow_filter_harga(val) {
+    _show_filter_harga = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setshow_filter_rating(val) {
+    _show_filter_rating = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  set setshow_filter_pembeli(val) {
+    _show_filter_pembeli = val;
+    notifyListeners();
+    _set_item_to_show();
+  }
+
+  void _set_item_to_show() {
+    _data_filter_done.clear();
+    for (int i = 0; i < data.length; i++) {
+      bool statusitem = true;
+      if (CurrentOption != "") {
+        if (data[i]["jenis"] != CurrentOption) {
+          statusitem = false;
+        }
+      }
+      if (statusitem) {
+        if (show_filter_harga == true) {
+          if (data[i]["harga"] >= Current_harga) {
+            statusitem = false;
+          }
+        }
+      }
+      if (statusitem) {
+        if (show_filter_pembeli == true) {
+          if (data[i]["pembeli"] >= Current_pembeli) {
+            statusitem = false;
+          }
+        }
+      }
+      if (statusitem) {
+        if (show_filter_rating == true) {
+          if (data[i]["rating"] >= Current_rating) {
+            statusitem = false;
+          }
+        }
+      }
+      if (statusitem) {
+        _data_filter_done.add(data[i]);
+      }
+    }
+    setdata_filter_done = null;
+  }
+}
