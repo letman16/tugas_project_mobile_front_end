@@ -8,11 +8,14 @@ import 'package:tugas_kelompok/minggu05/minggu05.dart';
 import 'package:tugas_kelompok/minggu06/minggu06.dart';
 import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 import 'package:tugas_kelompok/minggu05/minggu05_provider.dart';
+import 'package:tugas_kelompok/minggu07/minggu07.dart';
+import 'minggu07/minggu07_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
-    ChangeNotifierProvider(create: (_) => Minggu05Provider())
+    ChangeNotifierProvider(create: (_) => Minggu05Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu07Provider()),
   ], child: const MyApp()));
 }
 
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
         body: const TableTugasKelompok(),
@@ -152,7 +156,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BlankScreen();
+              return Minggu07();
             }));
           },
           style: ElevatedButton.styleFrom(
