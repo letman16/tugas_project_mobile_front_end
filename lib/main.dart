@@ -10,6 +10,7 @@ import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 import 'package:tugas_kelompok/minggu05/minggu05_provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
 import 'minggu07/minggu07_provider.dart';
+import 'minggu01/minggu01.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -48,7 +49,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BlankScreen();
+              return const Minggu01();
             }));
           },
           style: ElevatedButton.styleFrom(
