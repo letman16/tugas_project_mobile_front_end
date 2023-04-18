@@ -22,13 +22,9 @@ class _Minggu01State extends State<Minggu01> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 48, 48, 48),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 156, 81)),
-        backgroundColor: Color.fromARGB(255, 22, 22, 22),
         title: const Text(
           "Minggu1",
-          style: TextStyle(color: Colors.grey),
         ),
         centerTitle: true,
       ),
@@ -85,7 +81,6 @@ class _Minggu01State extends State<Minggu01> {
                   alignment: Alignment.center,
                   child: const Text(
                     ">> Styling : Color = blue <<",
-                    style: TextStyle(color: Colors.grey),
                   )),
               const TransDivider(),
               SizedBox(
@@ -182,8 +177,7 @@ class _Minggu01State extends State<Minggu01> {
               const TransDivider(),
               Row(
                 children: [
-                  const Text("Isi Text : ",
-                      style: TextStyle(color: Colors.grey)),
+                  const Text("Isi Text : "),
                   const SizedBox(
                     width: 10.0,
                   ),
@@ -206,7 +200,7 @@ class _Minggu01State extends State<Minggu01> {
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 height: 70,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(5.0)),
                 alignment: Alignment.center,
                 child: Text(IsiText),
@@ -216,7 +210,7 @@ class _Minggu01State extends State<Minggu01> {
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 height: 70,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(5.0)),
                 alignment: Alignment.center,
                 child: Text(
@@ -229,7 +223,7 @@ class _Minggu01State extends State<Minggu01> {
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 height: 70,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(5.0)),
                 alignment: Alignment.center,
                 child: Text(
@@ -242,7 +236,7 @@ class _Minggu01State extends State<Minggu01> {
                   margin: const EdgeInsets.symmetric(horizontal: 15),
                   height: 70,
                   decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(5.0)),
                   alignment: Alignment.center,
                   child: CreateTextSpan(txt: IsiText)),
@@ -254,7 +248,6 @@ class _Minggu01State extends State<Minggu01> {
                   ImagesLink(),
                   Text(
                     "Menggunakan Link Address",
-                    style: TextStyle(color: Colors.grey),
                   )
                 ],
               ),
@@ -263,8 +256,9 @@ class _Minggu01State extends State<Minggu01> {
               Column(
                 children: const [
                   ImagesAssets(),
-                  Text("Menggunakan Assets",
-                      style: TextStyle(color: Colors.grey))
+                  Text(
+                    "Menggunakan Assets",
+                  )
                 ],
               )
             ],
@@ -283,8 +277,7 @@ class Header extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         txt,
-        style: const TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey),
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -340,7 +333,7 @@ class IconBox extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: 100,
       decoration: BoxDecoration(
-          color: Colors.grey, borderRadius: BorderRadius.circular(5.0)),
+          color: Colors.grey[300], borderRadius: BorderRadius.circular(5.0)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

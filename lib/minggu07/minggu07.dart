@@ -4,10 +4,14 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 
+import '../minggu01/minggu01.dart';
+import '../minggu02/minggu02.dart';
+import '../minggu03/minggu03.dart';
+import '../minggu05/minggu05.dart';
+import '../minggu06/minggu06.dart';
+
 class Minggu07 extends StatefulWidget {
   const Minggu07({super.key});
-
-
 
   @override
   State<Minggu07> createState() => _Minggu07State();
@@ -22,10 +26,6 @@ class _Minggu07State extends State<Minggu07> {
   TextEditingController NameController = TextEditingController();
   TextEditingController SearchController = TextEditingController();
 
-  String add = "add";
-  String delete = "delete";
-  String selected = "anu";
-
   String Search = "";
 
   int _CurrentIndex = 0;
@@ -35,55 +35,49 @@ class _Minggu07State extends State<Minggu07> {
   Widget bodywidget(BuildContext context) {
     final prov = Provider.of<Minggu07Provider>(context);
     if (_CurrentIndex == 0) {
-      return SingleChildScrollView(
-        child: Column(
-          children: prov.teman.map((e) => MyFreindCard(Person: e)).toList(),
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: prov.teman.map((e) => MyFreindCard(Person: e)).toList(),
+          ),
         ),
       );
     } else {
-      return Column(
-        children: [
-          TextField(
-            controller: SearchController,
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(), hintText: "Nama"),
-            onChanged: (val) {
-              setState(() {
-                Search = val;
-              });
-            },
-          ),
-          Column(
-            children: prov.teman
-                .map((e) => MyFreindCard_filter(Person: e, Keyword: Search))
-                .toList(),
-          )
-        ],
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: SearchController,
+              decoration: const InputDecoration(
+                  border: UnderlineInputBorder(), label: Text("Nama")),
+              onChanged: (val) {
+                setState(() {
+                  Search = val;
+                });
+              },
+            ),
+            Column(
+              children: prov.teman
+                  .map((e) => MyFreindCard_filter(Person: e, Keyword: Search))
+                  .toList(),
+            )
+          ],
+        ),
       );
     }
   }
 
   Widget build(BuildContext context) {
     final prov = Provider.of<Minggu07Provider>(context);
+
+    const addSnackBar =
+        SnackBar(content: const Text("Berhasil menambahkan teman"));
     return Scaffold(
       appBar: AppBar(
         title: const Text("Minggu 05"),
         centerTitle: true,
-        leading: PopupMenuButton(
-          itemBuilder: (context) => [
-            PopupMenuItem(
-              child: const Text("hai"),
-              value: val1,
-            ),
-            PopupMenuItem(
-              child: const Text("halo"),
-              value: val2,
-            )
-          ],
-          onSelected: (value) => setState(() {
-            now = value;
-          }),
-        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -118,78 +112,161 @@ class _Minggu07State extends State<Minggu07> {
               icon: const Icon(Icons.question_mark)),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text("Home"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: const Text("Minggu01"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu01();
+                }));
+              },
+            ),
+            ListTile(
+              title: const Text("Minggu02"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu02();
+                }));
+              },
+            ),
+            ListTile(
+              title: const Text("Minggu03"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu03();
+                }));
+              },
+            ),
+            ListTile(title: const Text("Minggu04"), onTap: null),
+            ListTile(
+              title: const Text("Minggu05"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu5();
+                }));
+              },
+            ),
+            ListTile(
+              title: const Text("Minggu06"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu06();
+                }));
+              },
+            ),
+            ListTile(
+              title: const Text("Minggu07"),
+              selected: true,
+              selectedTileColor: Colors.amber,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      ),
       body: bodywidget(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                int selectedRadio = -1;
-                return AlertDialog(
-                  title: const Text("Tambah Teman"),
-                  content: StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
-                      return Column(mainAxisSize: MainAxisSize.min, children: [
-                        TextField(
-                          controller: NameController,
-                          decoration: const InputDecoration(
-                              border: UnderlineInputBorder(), hintText: "Nama"),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                Radio(
-                                    value: 0,
-                                    groupValue: selectedRadio,
-                                    onChanged: (int? val) {
-                                      setState(() => selectedRadio = val!);
-                                    }),
-                                Text("Male")
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Radio(
-                                    value: 1,
-                                    groupValue: selectedRadio,
-                                    onChanged: (int? val) {
-                                      setState(() => selectedRadio = val!);
-                                    }),
-                                Text("Female")
-                              ],
-                            ),
-                          ],
-                        )
-                      ]);
-                    },
-                  ),
-                  actions: [
-                    OutlinedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text("Cancel")),
-                    ElevatedButton(
-                        onPressed: () {
-                          if (selectedRadio == 1) SelectGender = "female";
-                          if (selectedRadio == 0) SelectGender = "male";
-                          prov.settambahteman = {
-                            "name": NameController.text,
-                            "gender": SelectGender,
-                            "close_freind": false
-                          };
-                          NameController.text = "";
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text("Save")),
-                  ],
-                );
-              });
-        },
-        child: const Icon(Icons.add),
+      floatingActionButton: Visibility(
+        visible: _CurrentIndex == 0 ? true : false,
+        child: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  int selectedRadio = -1;
+                  return AlertDialog(
+                    title: const Text("Tambah Teman"),
+                    content: StatefulBuilder(
+                      builder: (BuildContext context, StateSetter setState) {
+                        return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextField(
+                                controller: NameController,
+                                decoration: const InputDecoration(
+                                    border: UnderlineInputBorder(),
+                                    hintText: "Nama"),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Radio(
+                                          value: 0,
+                                          groupValue: selectedRadio,
+                                          onChanged: (int? val) {
+                                            setState(
+                                                () => selectedRadio = val!);
+                                          }),
+                                      const Text("Male")
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                          value: 1,
+                                          groupValue: selectedRadio,
+                                          onChanged: (int? val) {
+                                            setState(
+                                                () => selectedRadio = val!);
+                                          }),
+                                      const Text("Female")
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ]);
+                      },
+                    ),
+                    actions: [
+                      OutlinedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Cancel")),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (selectedRadio == 1) SelectGender = "female";
+                            if (selectedRadio == 0) SelectGender = "male";
+                            prov.settambahteman = {
+                              "name": NameController.text,
+                              "gender": SelectGender,
+                              "close_freind": false
+                            };
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(addSnackBar);
+                            NameController.text = "";
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Save")),
+                    ],
+                  );
+                });
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _CurrentIndex,
@@ -221,6 +298,12 @@ class MyFreindCard extends StatelessWidget {
     } else {
       _male = false;
     }
+    const deleteSnackBar = SnackBar(content: const Text("Berhasil menghapus"));
+    SnackBar favsnackbar(String name, bool status) {
+      return SnackBar(
+          content: Text(
+              "Berhasil ${status ? "menghapus" : "menambahkan"} ${name} sebagai teman dekat"));
+    }
 
     return ListTile(
       leading: _male ? const Icon(Icons.male) : const Icon(Icons.female),
@@ -230,16 +313,19 @@ class MyFreindCard extends StatelessWidget {
       trailing: PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem(
-            child: Text("Delete"),
+            child: const Text("Delete"),
             onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(deleteSnackBar);
               prov.setdelete = Person["name"];
             },
           ),
           PopupMenuItem(
             child: Person["close_freind"]
-                ? Text("Remove Close Freind")
-                : Text("Add Close Freind"),
+                ? const Text("Remove Close Freind")
+                : const Text("Add Close Freind"),
             onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  favsnackbar(Person["name"], Person["close_freind"]));
               prov.setclosefreind = Person["name"];
             },
           ),
