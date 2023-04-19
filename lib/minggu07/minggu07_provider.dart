@@ -14,21 +14,35 @@ class Minggu07Provider extends ChangeNotifier {
     {'name': 'Ahmad Al-Saidi', 'gender': 'male', 'close_freind': true}
   ];
 
+  String _inputNama = "";
+  bool _enablebutton = false;
+
   List<Map<String, dynamic>> get teman => _teman;
+
+  String get inputNama => _inputNama;
+  bool get enablebutton => _enablebutton;
 
   set setteman(val) {
     _teman = val;
     notifyListeners();
   }
 
+  set setenablebutton(val) {
+    _enablebutton = val;
+    notifyListeners();
+  }
+
+  set setinputNama(val) {
+    _inputNama = val;
+    notifyListeners();
+  }
+
   set settambahteman(Map<String, dynamic> val) {
     _teman.add(val);
-    print("Success add");
     notifyListeners();
   }
 
   set setdelete(String val) {
-    print("succes remove" + val);
     _teman.removeWhere((item) => item['name'] == val);
     notifyListeners();
   }

@@ -10,8 +10,7 @@ class Minggu01 extends StatefulWidget {
 class _Minggu01State extends State<Minggu01> {
   final TextEditingController textstyle = TextEditingController();
 
-  String IsiText =
-      "Saya ganteng dan saya bangga pada kegantengan saya. Saya yakin dapat membawa kebaikan pada dunia hanya dengan senyuman saya.";
+  String IsiText = "Saya ganteng dan saya bangga pada kegantengan saya.";
 
   void _changeText() {
     setState(() {
@@ -379,7 +378,10 @@ class CreateTextSpan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(TextSpan(children: [for (TextSpan i in Span()) i]));
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Text.rich(TextSpan(children: [for (TextSpan i in Span()) i])),
+    );
   }
 }
 

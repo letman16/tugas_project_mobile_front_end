@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 
@@ -19,10 +17,6 @@ class Minggu07 extends StatefulWidget {
 
 class _Minggu07State extends State<Minggu07> {
   @override
-  String val1 = "hai";
-  String val2 = "halo";
-  String now = "Hola";
-
   TextEditingController NameController = TextEditingController();
   TextEditingController SearchController = TextEditingController();
 
@@ -31,6 +25,8 @@ class _Minggu07State extends State<Minggu07> {
   int _CurrentIndex = 0;
 
   String SelectGender = "";
+
+  bool _addnama = false;
 
   Widget bodywidget(BuildContext context) {
     final prov = Provider.of<Minggu07Provider>(context);
@@ -72,11 +68,14 @@ class _Minggu07State extends State<Minggu07> {
   Widget build(BuildContext context) {
     final prov = Provider.of<Minggu07Provider>(context);
 
-    const addSnackBar =
-        SnackBar(content: const Text("Berhasil menambahkan teman"));
+    const addSnackBar = SnackBar(
+      content: const Text("Berhasil menambahkan teman"),
+      duration: Duration(milliseconds: 500),
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Minggu 05"),
+        title: const Text("Minggu 07"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -193,75 +192,89 @@ class _Minggu07State extends State<Minggu07> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  int selectedRadio = -1;
-                  return AlertDialog(
-                    title: const Text("Tambah Teman"),
-                    content: StatefulBuilder(
-                      builder: (BuildContext context, StateSetter setState) {
-                        return Column(
-                            mainAxisSize: MainAxisSize.min,
+                  int selectedRadio = 0;
+                  return StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) {
+                      return AlertDialog(
+                        title: const Text("Tambah Teman"),
+                        content:
+                            Column(mainAxisSize: MainAxisSize.min, children: [
+                          TextField(
+                            controller: NameController,
+                            decoration: InputDecoration(
+                              border: UnderlineInputBorder(),
+                              label: Text("Nama"),
+                            ),
+                            onChanged: (value) {
+                              prov.setinputNama = value;
+                              prov.setenablebutton =
+                                  prov.inputNama.isEmpty ? false : true;
+                              setState(
+                                () {},
+                              );
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              TextField(
-                                controller: NameController,
-                                decoration: const InputDecoration(
-                                    border: UnderlineInputBorder(),
-                                    hintText: "Nama"),
+                              Row(
+                                children: [
+                                  Radio(
+                                      value: 0,
+                                      groupValue: selectedRadio,
+                                      onChanged: (int? val) {
+                                        setState(() => selectedRadio = val!);
+                                      }),
+                                  const Text("Male")
+                                ],
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Radio(
-                                          value: 0,
-                                          groupValue: selectedRadio,
-                                          onChanged: (int? val) {
-                                            setState(
-                                                () => selectedRadio = val!);
-                                          }),
-                                      const Text("Male")
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Radio(
-                                          value: 1,
-                                          groupValue: selectedRadio,
-                                          onChanged: (int? val) {
-                                            setState(
-                                                () => selectedRadio = val!);
-                                          }),
-                                      const Text("Female")
-                                    ],
-                                  ),
+                                  Radio(
+                                      value: 1,
+                                      groupValue: selectedRadio,
+                                      onChanged: (int? val) {
+                                        setState(() => selectedRadio = val!);
+                                      }),
+                                  const Text("Female")
                                 ],
-                              )
-                            ]);
-                      },
-                    ),
-                    actions: [
-                      OutlinedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text("Cancel")),
-                      ElevatedButton(
-                          onPressed: () {
-                            if (selectedRadio == 1) SelectGender = "female";
-                            if (selectedRadio == 0) SelectGender = "male";
-                            prov.settambahteman = {
-                              "name": NameController.text,
-                              "gender": SelectGender,
-                              "close_freind": false
-                            };
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(addSnackBar);
-                            NameController.text = "";
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text("Save")),
-                    ],
+                              ),
+                            ],
+                          )
+                        ]),
+                        actions: [
+                          OutlinedButton(
+                              onPressed: () {
+                                NameController.text = "";
+                                prov.setinputNama = "";
+                                prov.setenablebutton = false;
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text("Cancel")),
+                          ElevatedButton(
+                              onPressed: prov.enablebutton
+                                  ? () {
+                                      if (selectedRadio == 1)
+                                        SelectGender = "female";
+                                      if (selectedRadio == 0)
+                                        SelectGender = "male";
+                                      prov.settambahteman = {
+                                        "name": NameController.text,
+                                        "gender": SelectGender,
+                                        "close_freind": false
+                                      };
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(addSnackBar);
+                                      prov.setinputNama = "";
+                                      NameController.text = "";
+                                      prov.setenablebutton = false;
+                                      Navigator.of(context).pop();
+                                    }
+                                  : null,
+                              child: const Text("Save")),
+                        ],
+                      );
+                    },
                   );
                 });
           },
@@ -298,38 +311,54 @@ class MyFreindCard extends StatelessWidget {
     } else {
       _male = false;
     }
-    const deleteSnackBar = SnackBar(content: const Text("Berhasil menghapus"));
+    const deleteSnackBar = SnackBar(
+      content: const Text("Berhasil menghapus"),
+      duration: Duration(milliseconds: 500),
+    );
     SnackBar favsnackbar(String name, bool status) {
       return SnackBar(
-          content: Text(
-              "Berhasil ${status ? "menghapus" : "menambahkan"} ${name} sebagai teman dekat"));
+        content: Text(
+            "Berhasil ${status ? "menghapus" : "menambahkan"} ${name} sebagai teman dekat"),
+        duration: Duration(milliseconds: 500),
+      );
     }
 
-    return ListTile(
-      leading: _male ? const Icon(Icons.male) : const Icon(Icons.female),
-      title: Text(Person["name"],
-          style: TextStyle(
-              color: Person["close_freind"] ? Colors.green : Colors.black)),
-      trailing: PopupMenuButton(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            child: const Text("Delete"),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(deleteSnackBar);
-              prov.setdelete = Person["name"];
-            },
+    return Padding(
+      padding: EdgeInsets.only(top: 8),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+              color:
+                  Person["close_freind"] ? Colors.green.shade400 : Colors.grey,
+              width: 2.0),
+        ),
+        child: ListTile(
+          leading: _male ? const Icon(Icons.male) : const Icon(Icons.female),
+          title: Text(Person["name"]),
+          tileColor:
+              Person["close_freind"] ? Colors.green.shade200 : Colors.grey[200],
+          trailing: PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: const Text("Delete"),
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(deleteSnackBar);
+                  prov.setdelete = Person["name"];
+                },
+              ),
+              PopupMenuItem(
+                child: Person["close_freind"]
+                    ? const Text("Remove Close Freind")
+                    : const Text("Add Close Freind"),
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      favsnackbar(Person["name"], Person["close_freind"]));
+                  prov.setclosefreind = Person["name"];
+                },
+              ),
+            ],
           ),
-          PopupMenuItem(
-            child: Person["close_freind"]
-                ? const Text("Remove Close Freind")
-                : const Text("Add Close Freind"),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  favsnackbar(Person["name"], Person["close_freind"]));
-              prov.setclosefreind = Person["name"];
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
