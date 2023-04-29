@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tugas_kelompok/Test_minggu04/minggu04.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 
 import '../minggu01/minggu01.dart';
@@ -151,7 +152,16 @@ class _Minggu07State extends State<Minggu07> {
                 }));
               },
             ),
-            ListTile(title: const Text("Minggu04"), onTap: null),
+            ListTile(
+              title: const Text("Minggu04"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Minggu04();
+                }));
+              },
+            ),
             ListTile(
               title: const Text("Minggu05"),
               onTap: () {

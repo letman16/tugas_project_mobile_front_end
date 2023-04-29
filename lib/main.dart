@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tugas_kelompok/Test_minggu04/minggu04.dart';
 import 'package:tugas_kelompok/blank_screen.dart';
 
 import 'package:tugas_kelompok/minggu02/minggu02.dart';
@@ -9,6 +10,7 @@ import 'package:tugas_kelompok/minggu06/minggu06.dart';
 import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 import 'package:tugas_kelompok/minggu05/minggu05_provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
+import 'Test_minggu04/minggu04_provider.dart';
 import 'minggu07/minggu07_provider.dart';
 import 'minggu01/minggu01.dart';
 
@@ -17,6 +19,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
     ChangeNotifierProvider(create: (_) => Minggu05Provider()),
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu04Provider()),
   ], child: const MyApp()));
 }
 
@@ -103,7 +106,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BlankScreen();
+              return Minggu04();
             }));
           },
           style: ElevatedButton.styleFrom(
