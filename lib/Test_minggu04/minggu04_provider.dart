@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 class Minggu04Provider extends ChangeNotifier {
   List<Map<String, dynamic>> _datakayu = [
     {"expanded": false, "id": 1, "nama": "Jati", "jumlah": 20},
-    {"expanded": false, "id": 2, "nama": "Merbau", "jumlah": 15},
+    {"expanded": false, "id": 2, "nama": "Merbau", "jumlah": 4},
     {"expanded": false, "id": 3, "nama": "Mahoni", "jumlah": 12},
     {"expanded": false, "id": 4, "nama": "Kayu Cendana", "jumlah": 10},
-    {"expanded": false, "id": 5, "nama": "Kapur", "jumlah": 8},
+    {"expanded": false, "id": 5, "nama": "Kapur", "jumlah": 0},
     {"expanded": false, "id": 6, "nama": "Bengkirai", "jumlah": 7},
     {"expanded": false, "id": 7, "nama": "Sonokeling", "jumlah": 6},
     {"expanded": false, "id": 8, "nama": "Kelapa", "jumlah": 5},
@@ -18,8 +18,10 @@ class Minggu04Provider extends ChangeNotifier {
   List<String> _history = [];
   int _selected = -1;
   bool _temp = false;
+  String _keyword = "";
 
   bool get temp => _temp;
+  String get keyword => _keyword;
   int get selected => _selected;
   List<Map<String, dynamic>> get datakayu => _datakayu;
   List<String> get history => _history;

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:tugas_kelompok/Test_minggu04/historypage.dart';
 import 'package:tugas_kelompok/Test_minggu04/minggu04_provider.dart';
+import 'package:tugas_kelompok/minggu05/minggu05.dart';
 
 class Minggu04 extends StatefulWidget {
   const Minggu04({super.key});
@@ -13,6 +14,8 @@ class Minggu04 extends StatefulWidget {
 }
 
 class _Minggu04State extends State<Minggu04> {
+  int _CurrentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<Minggu04Provider>(context);
@@ -21,13 +24,27 @@ class _Minggu04State extends State<Minggu04> {
         title: const Text("Minggu 04"),
         centerTitle: true,
       ),
-      body: Item(),
+      body: _CurrentIndex == 0 ? Home(data: prov.datakayu) : Search(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const HistoryPage()));
         },
         child: const Icon(Icons.history),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _CurrentIndex,
+        onTap: (idx) {
+          setState(() {
+            _CurrentIndex = idx;
+          });
+        },
+        items: [
+          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          const BottomNavigationBarItem(
+              label: "Search", icon: Icon(Icons.search)),
+        ],
       ),
     );
   }
@@ -66,14 +83,15 @@ class _CostumTileState extends State<CostumTile> {
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       decoration: BoxDecoration(
           border: Border.all(width: 2.0, color: Colors.grey),
-          color: Colors.grey.shade200),
+          color: widget.data["jumlah"] <= 3? Colors.red.shade300:Colors.green.shade300),
       child: ExpansionTile(
         key: GlobalKey(),
         initiallyExpanded: mydata.elementAt(0)["expanded"],
         onExpansionChanged: (value) {
           prov.expanditem(widget.data["nama"]);
         },
-        backgroundColor: Colors.grey.shade200,
+        textColor: Colors.black,
+        collapsedTextColor: Colors.black,
         leading: Text(widget.data["id"].toString()),
         trailing: Text("Jumlah : ${widget.data["jumlah"]}"),
         title: Text(widget.data["nama"]),
@@ -180,68 +198,78 @@ class _CostumTileState extends State<CostumTile> {
   }
 }
 
-class Item extends StatelessWidget {
-  const Item({super.key});
+class Home extends StatelessWidget {
+  List<Map<String, dynamic>> data = [{}];
+  Home({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+        scrollDirection: Axis.vertical,
+        children: data.map((e) => CostumTile(data: e)).toList());
+  }
+}
+
+class Search extends StatefulWidget {
+  const Search({super.key});
+
+  @override
+  State<Search> createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  final TextEditingController keysearch = new TextEditingController();
+
+  String keyInput = "";
 
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<Minggu04Provider>(context);
-    return ListView(
-        scrollDirection: Axis.vertical,
-        children: prov.datakayu.map((e) => CostumTile(data: e)).toList());
-  }
-}
 
-class MyWidget extends StatefulWidget {
-  @override
-  _MyWidgetState createState() => _MyWidgetState();
-}
-
-class _MyWidgetState extends State<MyWidget> {
-  late int selected; //attention
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Short Product"),
-      ),
-      body: ListView.builder(
-        key: Key('builder ${selected.toString()}'), //attention
-        itemCount: 10,
-        itemBuilder: (context, i) {
-          return ExpansionTile(
-              key: Key(i.toString()), //attention
-              initiallyExpanded: i == selected, //attention
-              title: Text(i.toString()),
-              children: _Product_ExpandAble_List_Builder(i),
-              onExpansionChanged: ((newState) {
-                if (newState)
-                  setState(() {
-                    selected = i;
-                  });
-                else
-                  setState(() {
-                    selected = -1;
-                  });
-              }));
-        },
+    return Container(
+      decoration: BoxDecoration(color: Colors.grey.shade200),
+      padding: EdgeInsets.all(12.0),
+      child: ListView(
+        children: [
+          TextField(
+            controller: keysearch,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Keyword"),
+                fillColor: Colors.grey.shade300),
+            onChanged: (value) {
+              keyInput = keysearch.text;
+              setState(() {});
+            },
+          ),
+          Divider(
+            height: 30,
+            color: Colors.grey.shade500,
+          ),
+          Column(children: prov.datakayu.map((e) => FilterData(keyword: keyInput, data: e)).toList())
+        ],
       ),
     );
   }
+}
 
-  _Product_ExpandAble_List_Builder(int cat_id) {
-    List<Widget> columnContent = [];
-    [1, 2, 4, 5].forEach((product) => {
-          columnContent.add(
-            ListTile(
-              title: ExpansionTile(
-                title: Text(product.toString()),
-              ),
-              trailing: Text("$product (Kg)"),
-            ),
-          ),
-        });
-    return columnContent;
+class FilterData extends StatelessWidget {
+  String keyword;
+  Map<String, dynamic> data;
+
+  FilterData({super.key, required this.keyword, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    String nama = data["nama"].toLowerCase();
+    if (keyword != "") {
+      if (nama.contains(keyword)) {
+        return CostumTile(data: data);
+      } else {
+        return Container();
+      }
+    } else {
+      return Container();
+    }
   }
 }

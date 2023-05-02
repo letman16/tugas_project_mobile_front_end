@@ -381,7 +381,6 @@ class MyFreindCard_filter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prov = Provider.of<Minggu07Provider>(context);
     if (Keyword != "") {
       if (Person["name"].toLowerCase().contains(Keyword)) {
         return MyFreindCard(Person: Person);
