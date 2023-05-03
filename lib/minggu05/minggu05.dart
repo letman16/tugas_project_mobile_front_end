@@ -17,7 +17,7 @@ class _Minggu5State extends State<Minggu5> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Minggu 5",
+          "Minggu 05",
         ),
         centerTitle: true,
       ),

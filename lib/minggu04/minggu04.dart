@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_kelompok/Test_minggu04/historypage.dart';
-import 'package:tugas_kelompok/Test_minggu04/minggu04_provider.dart';
-import 'package:tugas_kelompok/minggu05/minggu05.dart';
+import 'package:tugas_kelompok/minggu04/historypage.dart';
+import 'package:tugas_kelompok/minggu04/minggu04_provider.dart';
 
 class Minggu04 extends StatefulWidget {
   const Minggu04({super.key});
@@ -25,7 +22,8 @@ class _Minggu04State extends State<Minggu04> {
         centerTitle: true,
       ),
       body: _CurrentIndex == 0 ? Home(data: prov.datakayu) : Search(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
@@ -40,10 +38,9 @@ class _Minggu04State extends State<Minggu04> {
             _CurrentIndex = idx;
           });
         },
-        items: [
-          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          const BottomNavigationBarItem(
-              label: "Search", icon: Icon(Icons.search)),
+        items: const [
+          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         ],
       ),
     );
@@ -83,7 +80,9 @@ class _CostumTileState extends State<CostumTile> {
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       decoration: BoxDecoration(
           border: Border.all(width: 2.0, color: Colors.grey),
-          color: widget.data["jumlah"] <= 3? Colors.red.shade300:Colors.green.shade300),
+          color: widget.data["jumlah"] <= 3
+              ? Colors.red.shade300
+              : Colors.green.shade300),
       child: ExpansionTile(
         key: GlobalKey(),
         initiallyExpanded: mydata.elementAt(0)["expanded"],
@@ -246,7 +245,10 @@ class _SearchState extends State<Search> {
             height: 30,
             color: Colors.grey.shade500,
           ),
-          Column(children: prov.datakayu.map((e) => FilterData(keyword: keyInput, data: e)).toList())
+          Column(
+              children: prov.datakayu
+                  .map((e) => FilterData(keyword: keyInput, data: e))
+                  .toList())
         ],
       ),
     );

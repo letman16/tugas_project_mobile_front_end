@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_kelompok/Test_minggu04/minggu04.dart';
+import 'package:tugas_kelompok/minggu04/minggu04.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 
 import '../minggu01/minggu01.dart';
@@ -123,7 +123,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu01"),
+              title: const Text("Minggu 01"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -133,7 +133,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu02"),
+              title: const Text("Minggu 02"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -143,7 +143,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu03"),
+              title: const Text("Minggu 03"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -153,7 +153,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu04"),
+              title: const Text("Minggu 04"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -163,7 +163,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu05"),
+              title: const Text("Minggu 05"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -173,7 +173,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu06"),
+              title: const Text("Minggu 06"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -183,7 +183,7 @@ class _Minggu07State extends State<Minggu07> {
               },
             ),
             ListTile(
-              title: const Text("Minggu07"),
+              title: const Text("Minggu 07"),
               selected: true,
               selectedTileColor: Colors.amber,
               onTap: () {
@@ -211,7 +211,7 @@ class _Minggu07State extends State<Minggu07> {
                             Column(mainAxisSize: MainAxisSize.min, children: [
                           TextField(
                             controller: NameController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
                               label: Text("Nama"),
                             ),
@@ -264,10 +264,12 @@ class _Minggu07State extends State<Minggu07> {
                           ElevatedButton(
                               onPressed: prov.enablebutton
                                   ? () {
-                                      if (selectedRadio == 1)
+                                      if (selectedRadio == 1) {
                                         SelectGender = "female";
-                                      if (selectedRadio == 0)
+                                      }
+                                      if (selectedRadio == 0) {
                                         SelectGender = "male";
+                                      }
                                       prov.settambahteman = {
                                         "name": NameController.text,
                                         "gender": SelectGender,
@@ -298,10 +300,9 @@ class _Minggu07State extends State<Minggu07> {
             _CurrentIndex = idx;
           });
         },
-        items: [
-          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          const BottomNavigationBarItem(
-              label: "Search", icon: Icon(Icons.search)),
+        items: const [
+          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         ],
       ),
     );
@@ -322,7 +323,7 @@ class MyFreindCard extends StatelessWidget {
       _male = false;
     }
     const deleteSnackBar = SnackBar(
-      content: const Text("Berhasil menghapus"),
+      content: Text("Berhasil menghapus"),
       duration: Duration(milliseconds: 500),
     );
     SnackBar favsnackbar(String name, bool status) {

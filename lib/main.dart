@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_kelompok/Test_minggu04/minggu04.dart';
-import 'package:tugas_kelompok/blank_screen.dart';
+// import 'package:tugas_kelompok/blank_screen.dart';
 
+import 'package:tugas_kelompok/minggu01/minggu01.dart';
 import 'package:tugas_kelompok/minggu02/minggu02.dart';
 import 'package:tugas_kelompok/minggu03/minggu03.dart';
+
+import 'package:tugas_kelompok/minggu04/minggu04.dart';
+import 'package:tugas_kelompok/minggu04/minggu04_provider.dart';
+
 import 'package:tugas_kelompok/minggu05/minggu05.dart';
+import 'package:tugas_kelompok/minggu05/minggu05_provider.dart';
+
 import 'package:tugas_kelompok/minggu06/minggu06.dart';
 import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
-import 'package:tugas_kelompok/minggu05/minggu05_provider.dart';
+
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
-import 'Test_minggu04/minggu04_provider.dart';
-import 'minggu07/minggu07_provider.dart';
-import 'minggu01/minggu01.dart';
+import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -194,7 +198,9 @@ class TableTugasKelompok extends StatelessWidget {
                         Text("Anggota Kelompok:"),
                         SizedBox(height: 5),
                         Text("1. 211110217 Jikky"),
-                        Text("2. 211111578 Lukman Hakim")
+                        Text("2. 211111578 Lukman Hakim"),
+                        Text("3. 211112299 Bobby Boris Febrian Bakara"),
+                        Text("4. 211112562 M. Aulia Kahfim")
                       ]),
                 )
               ],

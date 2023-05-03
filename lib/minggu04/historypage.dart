@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_kelompok/Test_minggu04/minggu04_provider.dart';
+import 'package:tugas_kelompok/minggu04/minggu04_provider.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
