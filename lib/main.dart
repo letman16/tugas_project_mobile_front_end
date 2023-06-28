@@ -17,10 +17,14 @@ import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
+import 'package:tugas_kelompok/minggu10/minggu10.dart';
+
+import 'minggu10/page.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
+    ChangeNotifierProvider(create: (_) => m10prov()),
     ChangeNotifierProvider(create: (_) => Minggu05Provider()),
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
     ChangeNotifierProvider(create: (_) => Minggu04Provider()),
@@ -177,6 +181,24 @@ class TableTugasKelompok extends StatelessWidget {
           ),
         ),
       },
+      {
+        'minggu': '10',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Minggu10();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+          ),
+          child: const Text(
+            'Banner, Dialog, Snackbar',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
     ];
 
     return Center(
@@ -206,41 +228,46 @@ class TableTugasKelompok extends StatelessWidget {
               ],
             ),
           ),
-          DataTable(
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'Minggu',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Materi',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-            rows: tableData.map<DataRow>((data) {
-              return DataRow(
-                cells: <DataCell>[
-                  DataCell(
-                    Center(
-                      child: Text(
-                        data['minggu'],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: FittedBox(
+              child: DataTable(
+                columns: const <DataColumn>[
+                  DataColumn(
+                    label: Text(
+                      'Minggu',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  DataCell(
-                    SizedBox(
-                      width: double.infinity,
-                      child: data['materi'],
+                  DataColumn(
+                    label: Text(
+                      'Materi',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
-              );
-            }).toList(),
+                rows: tableData.map<DataRow>((data) {
+                  return DataRow(
+                    cells: <DataCell>[
+                      DataCell(
+                        Center(
+                          child: Text(
+                            data['minggu'],
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        SizedBox(
+                          width: double.infinity,
+                          child: data['materi'],
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
           ),
         ],
       ),
