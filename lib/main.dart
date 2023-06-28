@@ -21,13 +21,17 @@ import 'package:tugas_kelompok/minggu10/minggu10.dart';
 
 import 'minggu10/page.dart';
 
+import 'package:tugas_kelompok/minggu13/minggu13.dart';
+import 'package:tugas_kelompok/minggu13/minggu13_provider.dart';
+
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => Minggu06Provider()),
-    ChangeNotifierProvider(create: (_) => m10prov()),
-    ChangeNotifierProvider(create: (_) => Minggu05Provider()),
-    ChangeNotifierProvider(create: (_) => Minggu07Provider()),
     ChangeNotifierProvider(create: (_) => Minggu04Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu05Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu06Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu07Provider()),
+    ChangeNotifierProvider(create: (_) => m10prov()),
+    ChangeNotifierProvider(create: (_) => Minggu13Provider()),
   ], child: const MyApp()));
 }
 
@@ -114,7 +118,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Minggu04();
+              return const Minggu04();
             }));
           },
           style: ElevatedButton.styleFrom(
@@ -168,7 +172,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Minggu07();
+              return const Minggu07();
             }));
           },
           style: ElevatedButton.styleFrom(
@@ -186,7 +190,7 @@ class TableTugasKelompok extends StatelessWidget {
         'materi': ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Minggu10();
+              return const Minggu10();
             }));
           },
           style: ElevatedButton.styleFrom(
@@ -195,6 +199,24 @@ class TableTugasKelompok extends StatelessWidget {
           ),
           child: const Text(
             'Banner, Dialog, Snackbar',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
+      {
+        'minggu': '13',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Minggu13();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+          ),
+          child: const Text(
+            'Slider, Tooltips, progress Indicator',
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
         ),
