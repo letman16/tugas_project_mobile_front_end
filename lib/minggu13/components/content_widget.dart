@@ -13,7 +13,7 @@ class ContentWidget extends StatelessWidget {
         child: prov.sedangProses
             ? Container()
             : prov.selesaiProses
-                ? const Tooltip(
+                ? Tooltip(
                     message: 'Ayam Panggang',
                     child: Expanded(
                       child: Column(

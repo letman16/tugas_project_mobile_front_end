@@ -70,7 +70,7 @@ class _Minggu10State extends State<Minggu10> {
   }
 
   ListTileSong(BuildContext context) {
-    final prov = Provider.of<m10prov>(context);
+    final prov = Provider.of<Minggu10Provider>(context);
     List<Widget> lTile = [];
 
     dynamic e;
@@ -133,7 +133,7 @@ class _Minggu10State extends State<Minggu10> {
   Widget build(BuildContext context) {
     final titleController = TextEditingController();
 
-    final prov = Provider.of<m10prov>(context);
+    final prov = Provider.of<Minggu10Provider>(context);
     return Scaffold(
         backgroundColor: Colors.grey.shade300,
         appBar: AppBar(

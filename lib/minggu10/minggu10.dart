@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class m10prov extends ChangeNotifier{
+class Minggu10Provider extends ChangeNotifier{
   dynamic _data = [
     {
       'judul': 'Shape of You',

@@ -18,11 +18,14 @@ import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 import 'package:tugas_kelompok/minggu10/minggu10.dart';
+import 'package:tugas_kelompok/minggu14/minggu14.dart';
 
 import 'minggu10/page.dart';
 
 import 'package:tugas_kelompok/minggu13/minggu13.dart';
 import 'package:tugas_kelompok/minggu13/minggu13_provider.dart';
+
+import 'minggu14/minggu14_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -30,8 +33,9 @@ void main() {
     ChangeNotifierProvider(create: (_) => Minggu05Provider()),
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
-    ChangeNotifierProvider(create: (_) => m10prov()),
+    ChangeNotifierProvider(create: (_) => Minggu10Provider()),
     ChangeNotifierProvider(create: (_) => Minggu13Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu14Provider()),
   ], child: const MyApp()));
 }
 
@@ -221,77 +225,93 @@ class TableTugasKelompok extends StatelessWidget {
           ),
         ),
       },
+      {
+        'minggu': '14',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Minggu14();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+          ),
+          child: const Text(
+            'Date Picker, Time Picker',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
     ];
 
-    return Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              children: [
-                const Text(
-                  "Kelompok 8",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                const SizedBox(height: 5),
-                SizedBox(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("Anggota Kelompok:"),
-                        SizedBox(height: 5),
-                        Text("1. 211110217 Jikky"),
-                        Text("2. 211111578 Lukman Hakim"),
-                        Text("3. 211112299 Bobby Boris Febrian Bakara"),
-                        Text("4. 211112562 M. Aulia Kahfim")
-                      ]),
-                )
-              ],
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: FittedBox(
-              child: DataTable(
-                columns: const <DataColumn>[
-                  DataColumn(
-                    label: Text(
-                      'Minggu',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                children: [
+                  const Text(
+                    "Kelompok 8",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  DataColumn(
-                    label: Text(
-                      'Materi',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text("Anggota Kelompok:"),
+                          SizedBox(height: 5),
+                          Text("1. 211110217 Jikky"),
+                          Text("2. 211111578 Lukman Hakim"),
+                          Text("3. 211112299 Bobby Boris Febrian Bakara"),
+                          Text("4. 211112562 M. Aulia Kahfim")
+                        ]),
+                  )
                 ],
-                rows: tableData.map<DataRow>((data) {
-                  return DataRow(
-                    cells: <DataCell>[
-                      DataCell(
-                        Center(
-                          child: Text(
-                            data['minggu'],
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      DataCell(
-                        SizedBox(
-                          width: double.infinity,
-                          child: data['materi'],
-                        ),
-                      ),
-                    ],
-                  );
-                }).toList(),
               ),
             ),
-          ),
-        ],
+            DataTable(
+                  columns: const <DataColumn>[
+                    DataColumn(
+                      label: Text(
+                        'Minggu',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        'Materi',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                  rows: tableData.map<DataRow>((data) {
+                    return DataRow(
+                      cells: <DataCell>[
+                        DataCell(
+                          Center(
+                            child: Text(
+                              data['minggu'],
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          SizedBox(
+                            width: double.infinity,
+                            child: data['materi'],
+                          ),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ),
+          ],
+        ),
       ),
     );
   }
