@@ -22,6 +22,9 @@ import 'package:tugas_kelompok/minggu14/minggu14.dart';
 
 import 'minggu10/page.dart';
 
+import 'minggu11/pertemuan11_screen.dart';
+import 'minggu11/pertemuan11_provider.dart';
+
 import 'package:tugas_kelompok/minggu13/minggu13.dart';
 import 'package:tugas_kelompok/minggu13/minggu13_provider.dart';
 
@@ -34,6 +37,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
     ChangeNotifierProvider(create: (_) => Minggu10Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu11Provider()),
     ChangeNotifierProvider(create: (_) => Minggu13Provider()),
     ChangeNotifierProvider(create: (_) => Minggu14Provider()),
   ], child: const MyApp()));
@@ -208,6 +212,24 @@ class TableTugasKelompok extends StatelessWidget {
         ),
       },
       {
+        'minggu': '11',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Minggu11();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.purple,
+          ),
+          child: const Text(
+            'Menus, List, dan Dividers',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
+      {
         'minggu': '13',
         'materi': ElevatedButton(
           onPressed: () {
@@ -275,41 +297,41 @@ class TableTugasKelompok extends StatelessWidget {
               ),
             ),
             DataTable(
-                  columns: const <DataColumn>[
-                    DataColumn(
-                      label: Text(
-                        'Minggu',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+              columns: const <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'Minggu',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Materi',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+              rows: tableData.map<DataRow>((data) {
+                return DataRow(
+                  cells: <DataCell>[
+                    DataCell(
+                      Center(
+                        child: Text(
+                          data['minggu'],
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                    DataColumn(
-                      label: Text(
-                        'Materi',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                    DataCell(
+                      SizedBox(
+                        width: double.infinity,
+                        child: data['materi'],
                       ),
                     ),
                   ],
-                  rows: tableData.map<DataRow>((data) {
-                    return DataRow(
-                      cells: <DataCell>[
-                        DataCell(
-                          Center(
-                            child: Text(
-                              data['minggu'],
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        DataCell(
-                          SizedBox(
-                            width: double.infinity,
-                            child: data['materi'],
-                          ),
-                        ),
-                      ],
-                    );
-                  }).toList(),
-                ),
+                );
+              }).toList(),
+            ),
           ],
         ),
       ),
