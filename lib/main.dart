@@ -18,6 +18,8 @@ import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
 import 'package:tugas_kelompok/minggu10/minggu10.dart';
+import 'package:tugas_kelompok/minggu12/minggu12_card.dart';
+import 'package:tugas_kelompok/minggu12/minggu12_provider.dart';
 import 'package:tugas_kelompok/minggu14/minggu14.dart';
 
 import 'minggu10/page.dart';
@@ -38,6 +40,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
     ChangeNotifierProvider(create: (_) => Minggu10Provider()),
     ChangeNotifierProvider(create: (_) => Minggu11Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu12Provider()),
     ChangeNotifierProvider(create: (_) => Minggu13Provider()),
     ChangeNotifierProvider(create: (_) => Minggu14Provider()),
   ], child: const MyApp()));
@@ -55,7 +58,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
-        body: const TableTugasKelompok(),
+        body: TableTugasKelompok(),
       ),
     );
   }
@@ -225,6 +228,24 @@ class TableTugasKelompok extends StatelessWidget {
           ),
           child: const Text(
             'Menus, List, dan Dividers',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
+      {
+        'minggu': '12',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Minggu12();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.pink.shade100,
+          ),
+          child: const Text(
+            'Cards, dan ListTiles',
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
         ),
