@@ -195,5 +195,53 @@ class Minggu12Provider with ChangeNotifier {
             'https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_Apple.inc.gif',
         subtext: 'tech company',
         subtext2: 'Steve Jobs'),
+    Data(
+        text: 'Mikroskil',
+        imageUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFdxtA2D_jBQKXOmFZqUu5sG1JQXVGR9_wLD43ZtJN2YjGQrA4_6Bvk09sewVFAvWd2fw&usqp=CAU',
+        subtext: 'university',
+        subtext2: 'Pahala Sirait'),
+    Data(
+        text: 'UGM',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/id/thumb/9/9f/Emblem_of_Universitas_Gadjah_Mada.svg/1200px-Emblem_of_Universitas_Gadjah_Mada.svg.png',
+        subtext: 'university',
+        subtext2: 'Ova Emilia'),
+    Data(
+        text: 'Binus',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/id/a/a2/Logo_Binus_University.png',
+        subtext: 'university',
+        subtext2: 'Harjanto Prabowo'),
+    Data(
+        text: 'Harvard',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/id/thumb/1/16/Lambang_Universitas_Harvard.svg/1200px-Lambang_Universitas_Harvard.svg.png',
+        subtext: 'university',
+        subtext2: 'Claudine Gay'),
+    Data(
+        text: 'Logitech',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Logitech_logo.svg/2560px-Logitech_logo.svg.png',
+        subtext: 'pc company',
+        subtext2: 'Bracken P. Darrell'),
+    Data(
+        text: 'Razer',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Razer_snake_logo.svg/1200px-Razer_snake_logo.svg.png',
+        subtext: 'pc company',
+        subtext2: 'Min-Liang Tan'),
+    Data(
+        text: 'PlayStation',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Playstation_logo_colour.svg/1200px-Playstation_logo_colour.svg.png',
+        subtext: 'game company',
+        subtext2: 'Jim Ryan'),
+    Data(
+        text: 'XBOX',
+        imageUrl:
+            'https://cdn.icon-icons.com/icons2/2699/PNG/512/xbox_logo_icon_169692.png',
+        subtext: 'game company',
+        subtext2: 'Phil Spencer'),
   ];
 }

@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
-        body: TableTugasKelompok(),
+        body: const TableTugasKelompok(),
       ),
     );
   }

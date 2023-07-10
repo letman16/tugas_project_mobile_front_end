@@ -23,6 +23,7 @@ class _Minggu12State extends State<Minggu12> {
         title: Text('Minggu 12'),
         centerTitle: true,
       ),
+      backgroundColor: Colors.blue.shade50,
       body: Consumer<Minggu12Provider>(
         builder: (context, dataProvider, _) {
           final filteredDataList = dataProvider.dataList
@@ -66,6 +67,7 @@ class _Minggu12State extends State<Minggu12> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
+                                  elevation: 4,
                                   child: ListTile(
                                     leading: Image.network(
                                       data.imageUrl,
@@ -82,11 +84,17 @@ class _Minggu12State extends State<Minggu12> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(data.subtext),
+                                        Text(
+                                          data.subtext,
+                                        ),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 5.0),
-                                          child: Text(data.subtext2),
+                                          child: Text(data.subtext2,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w200,
+                                                  color: Colors
+                                                      .deepOrange.shade900)),
                                         ),
                                       ],
                                     ),
