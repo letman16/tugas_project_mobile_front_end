@@ -87,11 +87,12 @@ class _Minggu15State extends State<Minggu15> {
                                     child: const Text(
                                       "Ulangi",
                                     )),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    prov.setPost = true;
-                                  },
-                                  child: const Text("Posting"))
+                              if (prov.isPost == false)
+                                ElevatedButton(
+                                    onPressed: () {
+                                      prov.setPost = true;
+                                    },
+                                    child: const Text("Posting"))
                             ],
                           ),
                         ),
@@ -112,7 +113,8 @@ class _Minggu15State extends State<Minggu15> {
                           padding: EdgeInsets.all(8.0),
                           child: Text(
                             "user1",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           ),
                         ),
                         const SizedBox(

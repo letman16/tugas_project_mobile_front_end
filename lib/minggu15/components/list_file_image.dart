@@ -37,7 +37,7 @@ class ListFileImage extends StatelessWidget {
                       final fileName = '$index. ${image.name}';
                       return Text(
                         fileName,
-                        style: const TextStyle(color: Colors.blue),
+                        style: const TextStyle(color: Colors.black),
                       );
                     }).toList() ??
                     [],

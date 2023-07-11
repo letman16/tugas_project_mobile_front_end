@@ -17,21 +17,23 @@ class CarouselSliderWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10),
       height: 300,
       child: CarouselSlider(
-          options: CarouselOptions(height: 400.0),
-          items: listImages!.asMap().entries.map((entry) {
-            final index = entry.key + 1;
-            final images = entry.value;
+        options: CarouselOptions(height: 400.0),
+        items: listImages!.asMap().entries.map((entry) {
+          final index = entry.key + 1;
+          final images = entry.value;
 
-            return Builder(builder: (BuildContext context) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(images.path),
-                    fit: BoxFit.cover,
-                  ),
+          return Builder(builder: (BuildContext context) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(images.path),
+                  fit: BoxFit.cover,
                 ),
+              ),
+              child: Tooltip(
+                message: images.name,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Align(
@@ -39,13 +41,15 @@ class CarouselSliderWidget extends StatelessWidget {
                     child: Text(
                       'Slide $index',
                       style:
-                          const TextStyle(fontSize: 16.0, color: Colors.purple),
+                          const TextStyle(fontSize: 16.0, color: Colors.blue),
                     ),
                   ),
                 ),
-              );
-            });
-          }).toList()),
+              ),
+            );
+          });
+        }).toList(),
+      ),
     );
   }
 }
