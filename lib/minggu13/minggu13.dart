@@ -31,33 +31,36 @@ class _Minggu13State extends State<Minggu13> {
       //     : prov.selesaiProses
       //         ? prov.backgroundBodyColor
       //         : Colors.black.withOpacity(0.0),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Tingkat Kecerahan: ${prov.sliderKecerahanLayarValue.round().toString()}',
-              style: const TextStyle(
-                  color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
-            const SlideBrighnessWidget(),
-            const Divider(),
-            Text(
-              'Ukuran Font: ${prov.sliderUkuranFontValue.round().toString()}',
-              style: const TextStyle(
-                  color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
-            const SlideUkuranFontWidget(),
-            const Align(
-              alignment: Alignment.bottomRight,
-              child: ProgressIndicatorWidget(),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            const ContentWidget()
-          ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Tingkat Kecerahan: ${prov.sliderKecerahanLayarValue.round().toString()}',
+                style: const TextStyle(
+                    color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
+              const SlideBrighnessWidget(),
+              const Divider(),
+              Text(
+                'Ukuran Font: ${prov.sliderUkuranFontValue.round().toString()}',
+                style: const TextStyle(
+                    color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
+              const SlideUkuranFontWidget(),
+              const Align(
+                alignment: Alignment.bottomRight,
+                child: ProgressIndicatorWidget(),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              const ContentWidget()
+            ],
+          ),
         ),
       ),
     );

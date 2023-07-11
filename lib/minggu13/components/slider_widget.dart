@@ -39,7 +39,7 @@ class SlideUkuranFontWidget extends StatelessWidget {
           child: Slider(
             value: prov.sliderUkuranFontValue,
             min: 0,
-            max: 10,
+            max: 4,
             onChanged: (value) {
               prov.setSliderUkuranFontValue = value;
             },

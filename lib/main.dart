@@ -32,6 +32,9 @@ import 'package:tugas_kelompok/minggu13/minggu13_provider.dart';
 
 import 'minggu14/minggu14_provider.dart';
 
+import 'minggu15/minggu15.dart';
+import 'minggu15/minggu15_provider.dart';
+
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => Minggu04Provider()),
@@ -43,6 +46,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Minggu12Provider()),
     ChangeNotifierProvider(create: (_) => Minggu13Provider()),
     ChangeNotifierProvider(create: (_) => Minggu14Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu15Provider()),
   ], child: const MyApp()));
 }
 
@@ -286,6 +290,24 @@ class TableTugasKelompok extends StatelessWidget {
           ),
         ),
       },
+      {
+        'minggu': '15',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Minggu15();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.red,
+          ),
+          child: const Text(
+            'ImagePicker, Carousel, Webview',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
     ];
 
     return SingleChildScrollView(
@@ -293,19 +315,19 @@ class TableTugasKelompok extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     "Kelompok 8",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5),
                   SizedBox(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text("Anggota Kelompok:"),
                           SizedBox(height: 5),
                           Text("1. 211110217 Jikky"),
