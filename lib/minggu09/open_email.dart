@@ -26,13 +26,19 @@ class _OpenEmailState extends State<OpenEmail> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            emailData['title_email'],
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                emailData['title_email'],
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                emailData['kategori_email'],
+                style: const TextStyle(fontSize: 12),
               ),
               TextButton(
                   onPressed: () {
@@ -43,13 +49,6 @@ class _OpenEmailState extends State<OpenEmail> {
                       ? const Icon(Icons.star)
                       : const Icon(Icons.star_border))
             ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            emailData['kategori_email'],
-            style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(
             height: 20,
@@ -98,7 +97,10 @@ class _OpenEmailState extends State<OpenEmail> {
           const SizedBox(
             height: 20,
           ),
-          Expanded(child: Text(emailData['body_email']))
+          Text(
+            emailData['body_email'],
+            style: const TextStyle(fontSize: 16),
+          )
         ]),
       ),
     );

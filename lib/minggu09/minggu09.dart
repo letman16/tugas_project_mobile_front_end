@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tugas_kelompok/main.dart';
 import 'package:tugas_kelompok/minggu09/minggu09_provider.dart';
 import 'package:tugas_kelompok/minggu09/open_email.dart';
 
@@ -12,7 +13,6 @@ class Minggu09 extends StatefulWidget {
 
 class _Minggu09State extends State<Minggu09> {
   List<Map<String, dynamic>> _listemail = [];
-  List<Map<String, dynamic>> _typeEmail = [];
   @override
   void initState() {
     super.initState();
@@ -62,7 +62,7 @@ class _Minggu09State extends State<Minggu09> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Joen Doe",
+                                "Kelompok 8",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
@@ -71,7 +71,7 @@ class _Minggu09State extends State<Minggu09> {
                                 height: 5,
                               ),
                               Text(
-                                "joen@mail.com",
+                                "kelompok8@mail.com",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
@@ -136,6 +136,19 @@ class _Minggu09State extends State<Minggu09> {
                   leading: const Icon(Icons.info),
                   title: const Text("Info"),
                   trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+                ),
+                const Divider(),
+                ListTile(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const MyApp();
+                    }));
+                  },
+                  leading: const Icon(Icons.home),
+                  title: const Text("Home"),
+                  trailing: const Icon(Icons.keyboard_arrow_left_outlined),
                 )
               ],
             ),
@@ -152,9 +165,8 @@ class _Minggu09State extends State<Minggu09> {
                     )),
                 Column(
                   children: _listemail.asMap().entries.map((entry) {
-                    var index = entry.key;
+                    // var index = entry.key;
                     var data = entry.value;
-                    String nama_pengirim = data['nama_pengirim'];
                     return Column(
                       children: [
                         ListTile(
@@ -174,13 +186,25 @@ class _Minggu09State extends State<Minggu09> {
                             ),
                           ),
                           title: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(nama_pengirim),
-                                Text(data['title_email']),
-                                Text(data['body_email'])
+                                Text(
+                                  data['nama_pengirim'],
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                const Divider(),
+                                Text(
+                                  data['title_email'],
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const Divider(),
+                                Text(
+                                  data['body_email'],
+                                )
                               ],
                             ),
                           ),

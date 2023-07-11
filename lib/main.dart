@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:tugas_kelompok/blank_screen.dart';
 
 import 'package:tugas_kelompok/minggu01/minggu01.dart';
 import 'package:tugas_kelompok/minggu02/minggu02.dart';
@@ -17,15 +16,20 @@ import 'package:tugas_kelompok/minggu06/minggu06_provider.dart';
 
 import 'package:tugas_kelompok/minggu07/minggu07.dart';
 import 'package:tugas_kelompok/minggu07/minggu07_provider.dart';
-import 'package:tugas_kelompok/minggu10/minggu10.dart';
-import 'package:tugas_kelompok/minggu12/minggu12_card.dart';
-import 'package:tugas_kelompok/minggu12/minggu12_provider.dart';
+
 import 'package:tugas_kelompok/minggu14/minggu14.dart';
 
+import 'minggu09/minggu09.dart';
+import 'minggu09/minggu09_provider.dart';
+
+import 'package:tugas_kelompok/minggu10/minggu10.dart';
 import 'minggu10/page.dart';
 
 import 'minggu11/pertemuan11_screen.dart';
 import 'minggu11/pertemuan11_provider.dart';
+
+import 'package:tugas_kelompok/minggu12/minggu12_card.dart';
+import 'package:tugas_kelompok/minggu12/minggu12_provider.dart';
 
 import 'package:tugas_kelompok/minggu13/minggu13.dart';
 import 'package:tugas_kelompok/minggu13/minggu13_provider.dart';
@@ -34,9 +38,6 @@ import 'minggu14/minggu14_provider.dart';
 
 import 'minggu15/minggu15.dart';
 import 'minggu15/minggu15_provider.dart';
-
-import 'minggu09/minggu09.dart';
-import 'minggu09/minggu09_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -57,7 +58,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const String _title = 'Tugas Kelompok 8 sebelum UTS';
+  static const String _title = 'Tugas Kelompok';
 
   @override
   Widget build(BuildContext context) {
@@ -345,17 +346,30 @@ class TableTugasKelompok extends StatelessWidget {
                     "Kelompok 8",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   SizedBox(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Anggota Kelompok:"),
+                          Text("Anggota Kelompok:",
+                              style: TextStyle(fontSize: 18)),
                           SizedBox(height: 5),
-                          Text("1. 211110217 Jikky"),
-                          Text("2. 211111578 Lukman Hakim"),
-                          Text("3. 211112299 Bobby Boris Febrian Bakara"),
-                          Text("4. 211112562 M. Aulia Kahfim")
+                          Text(
+                            "1. 211110217 - Jikky",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                          Text(
+                            "2. 211111578 - Lukman Hakim",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                          Text(
+                            "3. 211112299 - Bobby Boris Febrian Bakara",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                          Text(
+                            "4. 211112562 - Muhammad Aulia Kahfi",
+                            style: TextStyle(fontSize: 17),
+                          )
                         ]),
                   )
                 ],
@@ -366,13 +380,13 @@ class TableTugasKelompok extends StatelessWidget {
                 DataColumn(
                   label: Text(
                     'Minggu',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                 ),
                 DataColumn(
                   label: Text(
                     'Materi',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                 ),
               ],
@@ -383,7 +397,8 @@ class TableTugasKelompok extends StatelessWidget {
                       Center(
                         child: Text(
                           data['minggu'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
                         ),
                       ),
                     ),
