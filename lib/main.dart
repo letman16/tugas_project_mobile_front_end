@@ -35,12 +35,16 @@ import 'minggu14/minggu14_provider.dart';
 import 'minggu15/minggu15.dart';
 import 'minggu15/minggu15_provider.dart';
 
+import 'minggu09/minggu09.dart';
+import 'minggu09/minggu09_provider.dart';
+
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => Minggu04Provider()),
     ChangeNotifierProvider(create: (_) => Minggu05Provider()),
     ChangeNotifierProvider(create: (_) => Minggu06Provider()),
     ChangeNotifierProvider(create: (_) => Minggu07Provider()),
+    ChangeNotifierProvider(create: (_) => Minggu09Provider()),
     ChangeNotifierProvider(create: (_) => Minggu10Provider()),
     ChangeNotifierProvider(create: (_) => Minggu11Provider()),
     ChangeNotifierProvider(create: (_) => Minggu12Provider()),
@@ -196,6 +200,24 @@ class TableTugasKelompok extends StatelessWidget {
           ),
           child: const Text(
             'Komponen App Bar, Fab, Bottom Navigation',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      },
+      {
+        'minggu': '9',
+        'materi': ElevatedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Minggu09();
+            }));
+          },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.orange,
+          ),
+          child: const Text(
+            'Navigation Drawer, Tabs bar, Sheets Button',
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
         ),
