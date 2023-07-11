@@ -192,7 +192,8 @@ class _Minggu09State extends State<Minggu09> {
                               ),
                               TextButton(
                                   onPressed: () {
-                                    print(1);
+                                    // Lakukan update star sesuai dengan id_email
+                                    prov.updateStarStatus(data['id_email']);
                                   },
                                   child: data['star']
                                       ? const Icon(Icons.star)
@@ -222,7 +223,9 @@ class _Minggu09State extends State<Minggu09> {
                     children: [
                       shareRapat(context),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            gabungMeet(context);
+                          },
                           child: const Text("Gabung pakai kode"))
                     ],
                   ),
@@ -241,6 +244,31 @@ class _Minggu09State extends State<Minggu09> {
           title: const Text('Informasi'),
           content: const Text(
             'Ini adalah Aplikasi Gmail Palsu',
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> gabungMeet(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Informasi'),
+          content: const Text(
+            'Maaf, fitur ini belum tersedia',
           ),
           actions: <Widget>[
             TextButton(

@@ -26,9 +26,23 @@ class _OpenEmailState extends State<OpenEmail> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            emailData['title_email'],
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                emailData['title_email'],
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                  onPressed: () {
+                    // Lakukan update star sesuai dengan id_email
+                    prov.updateStarStatus(emailData['id_email']);
+                  },
+                  child: emailData['star']
+                      ? const Icon(Icons.star)
+                      : const Icon(Icons.star_border))
+            ],
           ),
           const SizedBox(
             height: 5,

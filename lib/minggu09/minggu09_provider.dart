@@ -55,4 +55,15 @@ class Minggu09Provider extends ChangeNotifier {
       "star": false
     }
   ];
+
+  void updateStarStatus(String idEmail) {
+    // Temukan email berdasarkan idEmail
+    final email = listEmail.firstWhere((email) => email['id_email'] == idEmail);
+
+    // Perbarui status star
+    email['star'] = !email['star'];
+
+    // Panggil notifyListeners untuk memberitahu perubahan pada listEmail
+    notifyListeners();
+  }
 }
