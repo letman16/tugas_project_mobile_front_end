@@ -88,8 +88,11 @@ class _OpenEmailState extends State<OpenEmail> {
                 )
               ],
             ),
-            trailing:
-                TextButton(onPressed: () {}, child: const Icon(Icons.menu)),
+            trailing: TextButton(
+                onPressed: () {
+                  infoMail(context);
+                },
+                child: const Icon(Icons.menu)),
           ),
           const Divider(),
           const SizedBox(
@@ -98,6 +101,31 @@ class _OpenEmailState extends State<OpenEmail> {
           Expanded(child: Text(emailData['body_email']))
         ]),
       ),
+    );
+  }
+
+  Future<void> infoMail(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Informasi'),
+          content: const Text(
+            'Maaf, fitur ini belum tersedia',
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

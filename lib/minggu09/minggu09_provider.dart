@@ -46,7 +46,7 @@ class Minggu09Provider extends ChangeNotifier {
       "star": false
     },
     {
-      "id_email": "AB",
+      "id_email": "AF",
       "nama_pengirim": "M. Aulia Kahfi",
       "title_email": "Ini adalah judul Email",
       "body_email": "Ini adalah body Email",
